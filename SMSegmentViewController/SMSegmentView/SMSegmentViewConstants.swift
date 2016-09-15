@@ -25,6 +25,11 @@ public struct SMSegmentedControlKeys {
     static let kTitleFont = "TitleFont"
 }
 
+public enum SMSegmentStackMode {
+    case Horizontal
+    case Vertical
+}
+
 public enum SMSegmentOrganiseMode: Int {
     case Horizontal
     case Vertical

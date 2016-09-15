@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var segmentView: SMSegmentView!
     var margin: CGFloat = 10.0
 
+    @IBOutlet weak var segmentView: SMSegmentView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
@@ -33,8 +33,11 @@ class ViewController: UIViewController {
           Init SMsegmentView
           Set divider colour and width here if there is a need
          */
-        let segmentFrame = CGRect(x: self.margin, y: 120.0, width: self.view.frame.size.width - self.margin*2, height: 40.0)
-        self.segmentView = SMSegmentView(frame: segmentFrame, dividerColour: UIColor(white: 0.95, alpha: 0.3), dividerWidth: 1.0, segmentAppearance: appearance)
+        self.segmentView.stackMode = .Vertical
+        self.segmentView.dividerColour = UIColor(white: 0.95, alpha: 0.3)
+        self.segmentView.dividerWidth = 1.0
+        self.segmentView.segmentAppearance = appearance
+//        self.segmentView = SMSegmentView(frame: segmentFrame, dividerColour: UIColor(white: 0.95, alpha: 0.3), dividerWidth: 1.0, segmentAppearance: appearance)
         self.segmentView.backgroundColor = UIColor.clearColor()
         
         self.segmentView.layer.cornerRadius = 5.0
@@ -68,24 +71,24 @@ class ViewController: UIViewController {
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         /*
         MARK: Replace the following line to your own frame setting for segmentView.
-        */
-        if toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight {
-            
-            self.segmentView.organiseMode = .Vertical
-            if let appearance = self.segmentView.segmentAppearance {
-                appearance.contentVerticalMargin = 25.0
-            }
-            self.segmentView.frame = CGRect(x: self.view.frame.size.width/2 - 40.0, y: 100.0, width: 80.0, height: 220.0)
-        }
-        else {
-            
-            self.segmentView.organiseMode = .Horizontal
-            if let appearance = self.segmentView.segmentAppearance {
-                appearance.contentVerticalMargin = 10.0
-            }
-            self.segmentView.frame = CGRect(x: self.margin, y: 120.0, width: self.view.frame.size.width - self.margin*2, height: 40.0)
-            
-        }
+//        */
+//        if toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight {
+//            
+//            self.segmentView.organiseMode = .Vertical
+//            if let appearance = self.segmentView.segmentAppearance {
+//                appearance.contentVerticalMargin = 25.0
+//            }
+//            self.segmentView.frame = CGRect(x: self.view.frame.size.width/2 - 40.0, y: 100.0, width: 80.0, height: 220.0)
+//        }
+//        else {
+//            
+//            self.segmentView.organiseMode = .Horizontal
+//            if let appearance = self.segmentView.segmentAppearance {
+//                appearance.contentVerticalMargin = 10.0
+//            }
+//            self.segmentView.frame = CGRect(x: self.margin, y: 120.0, width: self.view.frame.size.width - self.margin*2, height: 40.0)
+//            
+//        }
     }
 }
 

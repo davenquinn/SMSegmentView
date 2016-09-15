@@ -74,6 +74,8 @@ public class SMSegment: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
+        let stackMode = (superview as! SMSegmentView).stackMode
+        
         var distanceBetween: CGFloat = 0.0
         
         var verticalMargin: CGFloat = 0.0
@@ -81,25 +83,34 @@ public class SMSegment: UIView {
             verticalMargin = appearance.contentVerticalMargin
         }
         
-        var imageViewFrame = CGRectMake(0.0, verticalMargin, 0.0, self.frame.size.height - verticalMargin*2)
-        if self.onSelectionImage != nil || self.offSelectionImage != nil {
-            // Set imageView as a square
-            imageViewFrame.size.width = self.frame.size.height - verticalMargin*2
+        if case .Horizontal = stackMode {
+            var imageViewFrame = CGRectMake(0.0, verticalMargin, 0.0, self.frame.size.height - verticalMargin*2)
+            if self.onSelectionImage != nil || self.offSelectionImage != nil {
+                // Set imageView as a square
+                imageViewFrame.size.width = self.frame.size.height - verticalMargin*2
+                distanceBetween = 5.0
+            }
+            
+            // If there's no text, align image in the centre
+            // Otherwise align text & image in the centre
+            self.label.sizeToFit()
+            if self.label.frame.size.width == 0.0 {
+                imageViewFrame.origin.x = max((self.frame.size.width - imageViewFrame.size.width) / 2.0, 0.0)
+            }
+            else {
+                imageViewFrame.origin.x = max((self.frame.size.width - imageViewFrame.size.width - self.label.frame.size.width) / 2.0 - distanceBetween, 0.0)
+            }
+            
+            self.imageView.frame = imageViewFrame
+            self.label.frame = CGRectMake(imageViewFrame.origin.x + imageViewFrame.size.width + distanceBetween, verticalMargin, self.label.frame.size.width, self.frame.size.height - verticalMargin * 2)
+        } else {
             distanceBetween = 5.0
+            label.sizeToFit()
+            let imageViewHeight = frame.size.height - 2.0 * verticalMargin - label.frame.size.height
+            let imageViewFrame = CGRectMake(frame.size.width/2.0 - imageViewHeight/2.0, verticalMargin, imageViewHeight, imageViewHeight)
+            imageView.frame = imageViewFrame
+            label.frame = CGRectMake(0, imageViewHeight + verticalMargin + distanceBetween, frame.size.width, label.frame.size.height)
         }
-        
-        // If there's no text, align image in the centre
-        // Otherwise align text & image in the centre
-        self.label.sizeToFit()
-        if self.label.frame.size.width == 0.0 {
-            imageViewFrame.origin.x = max((self.frame.size.width - imageViewFrame.size.width) / 2.0, 0.0)
-        }
-        else {
-            imageViewFrame.origin.x = max((self.frame.size.width - imageViewFrame.size.width - self.label.frame.size.width) / 2.0 - distanceBetween, 0.0)
-        }
-        
-        self.imageView.frame = imageViewFrame
-        self.label.frame = CGRectMake(imageViewFrame.origin.x + imageViewFrame.size.width + distanceBetween, verticalMargin, self.label.frame.size.width, self.frame.size.height - verticalMargin * 2)
     }
     
     // MARK: Selections

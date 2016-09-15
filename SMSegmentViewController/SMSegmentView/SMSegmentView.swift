@@ -41,6 +41,14 @@ public class SMSegmentView: UIControl {
             }
         }
     }
+    
+    public var stackMode: SMSegmentStackMode = .Horizontal {
+        didSet {
+            if self.stackMode != oldValue {
+                self.setNeedsDisplay()
+            }
+        }
+    }
 
     public var organiseMode: SMSegmentOrganiseMode = .Horizontal {
         didSet {
