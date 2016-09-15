@@ -37,7 +37,7 @@ public class SMSegment: UIView {
     
     
     // Init
-    internal init(appearance: SMSegmentAppearance?) {
+    public init(appearance: SMSegmentAppearance?) {
         
         self.appearance = appearance
         
