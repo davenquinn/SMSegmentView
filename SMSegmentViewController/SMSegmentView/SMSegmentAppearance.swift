@@ -66,4 +66,16 @@ public class SMSegmentAppearance {
         self.titleOnSelectionFont = titleOnSelectionFont
         self.titleOffSelectionFont = titleOffSelectionFont
     }
+    
+    public init(appearance: SMSegmentAppearance) {
+        self.contentVerticalMargin = appearance.contentVerticalMargin
+        
+        self.segmentOnSelectionColour = appearance.segmentOnSelectionColour
+        self.segmentOffSelectionColour = appearance.segmentOffSelectionColour
+        
+        self.titleOnSelectionColour = appearance.titleOnSelectionColour
+        self.titleOffSelectionColour = appearance.titleOffSelectionColour
+        self.titleOnSelectionFont = appearance.titleOnSelectionFont
+        self.titleOffSelectionFont = appearance.titleOffSelectionFont
+    }
 }
