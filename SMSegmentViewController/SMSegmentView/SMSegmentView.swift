@@ -112,6 +112,24 @@ public class SMSegmentView: UIControl {
     public func addSegmentWithTitle(title: String?, onSelectionImage: UIImage?, offSelectionImage: UIImage?) {
         self.insertSegmentWithTitle(title, onSelectionImage: onSelectionImage, offSelectionImage: offSelectionImage, index: self.segments.count)
     }
+    
+    public func add(segment: SMSegment) {
+        let index = self.segments.count
+        segment.index = index
+        segment.didSelectSegment = { [weak self] segment in
+            if self!.selectedSegment != segment {
+                self!.deselectSegment()
+                self!.selectSegment(segment)
+            }
+        }
+        segment.setupUIElements()
+        
+        self.resetSegmentIndicesWithIndex(index, by: 1)
+        self.segments.insert(segment, atIndex: index)
+        
+        self.addSubview(segment)
+        self.layoutSubviews()
+    }
 
     public func insertSegmentWithTitle(title: String?, onSelectionImage: UIImage?, offSelectionImage: UIImage?, index: Int) {
 
