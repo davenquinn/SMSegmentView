@@ -74,7 +74,7 @@ public class SMSegment: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        let stackMode = (superview as! SMSegmentView).stackMode
+        let stackMode = (superview as? SMSegmentView)?.stackMode ?? .Horizontal
         
         var distanceBetween: CGFloat = 0.0
         
