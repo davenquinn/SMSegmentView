@@ -139,8 +139,14 @@ public class SMSegment: UIView {
         }
     }
     
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if !isSelected {
+            self.backgroundColor = self.appearance?.segmentOffSelectionColour
+        }
+    }
+    
     override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if self.isSelected == false{
+        if self.isSelected == false {
             self.didSelectSegment?(segment: self)
         }
     }
