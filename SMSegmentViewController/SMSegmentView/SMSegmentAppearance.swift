@@ -13,8 +13,12 @@ public class SMSegmentAppearance {
     // PROPERTIES
     public var segmentOnSelectionColour: UIColor
     public var segmentOffSelectionColour: UIColor
+    public var showTouchdownColor: Bool = true
     public var segmentTouchDownColour: UIColor {
         get {
+            if !showTouchdownColor {
+                return UIColor.clearColor()
+            }
             var onSelectionHue: CGFloat = 0.0
             var onSelectionSaturation: CGFloat = 0.0
             var onSelectionBrightness: CGFloat = 0.0
